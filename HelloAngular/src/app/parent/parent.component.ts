@@ -6,7 +6,11 @@ import { Component } from '@angular/core';
     <p>
       parent works!
       <input type="number" [(ngModel)]="parentId"/>
-      <app-child [parentId]="parentId"></app-child>
+      <app-child 
+      [parentId]="parentId"
+      (valueChanged)="reset($event)">
+      </app-child>
+      copyright (c), 2023
     </p>
   `,
   styles: [
@@ -15,4 +19,8 @@ import { Component } from '@angular/core';
 })
 export class ParentComponent {
   public parentId: number = 1;
+
+  public reset(arg0: Event) {
+    // this.parentId = arg0;
+  }
 }
