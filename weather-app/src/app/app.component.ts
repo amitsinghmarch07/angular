@@ -4,25 +4,22 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
   <div id="container">
-  <weather 
+  <weather speak
   city="Mumbai"
   [low]="25"
   [high]="30"
-  condition="sunny"
-  />
+  [condition]= "condition"
+  >
+  <h6>copyright @2023</h6>
+  </weather>
   </div>
   `,
-  styles: [`
-   div#container {
-      display: inline-block;
-      border:2px solid gray;
-      border-radius: 5px;
-      border-shadow: 5px 5px 5px lightgrey;
-      padding: 10px;
-      text-align: center;
-      margin: 10px;
-    }`]
+  styles: []
 })
 export class AppComponent {
   title = 'weather-app';
+  condition: string = "sunny"
+  constructor() {
+    console.log(this.condition!);
+  }
 }

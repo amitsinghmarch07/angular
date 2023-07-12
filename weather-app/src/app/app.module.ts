@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
+import { SpeakDirective } from './speak.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent
+    WeatherComponent,
+    SpeakDirective,
   ],
   imports: [
     BrowserModule
