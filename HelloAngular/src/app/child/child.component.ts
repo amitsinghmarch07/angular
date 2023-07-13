@@ -1,29 +1,25 @@
-import { Input, Component, EventEmitter, ContentChild, ElementRef } from '@angular/core';
+import { Input, Component, EventEmitter, ContentChild, ElementRef, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-child',
   template: `
-    <p>
-      child works!<br>
-      <ng-content></ng-content>
-      <!-- <ng-content select="header"></ng-content>
-      <ng-content select="main"></ng-content>
-      <ng-content select="footer"></ng-content>
-      <ng-content select="div#c1"></ng-content> -->
-      <ng-content></ng-content>
+  <p>ID {{person?.id}}</p>
+  <p> name {{person?.name}}</p>
   `,
   styles: [
     'p {border: 1px dotted red}'
   ]
 })
-export class ChildComponent {
-  @Input() id!: number;
-  @Input() valueChanged = new EventEmitter();
+export class ChildComponent implements OnChanges, DoCheck {
+  @Input() person?: { id: number, name: string };
 
-  @ContentChild('footer') content?: ElementRef<HTMLElement>;
-  public onSubmit() {
-
-    this.valueChanged.emit(100)
+  ngDoCheck(): void {
+    console.log("NGDOCHECK");
 
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("on changes fired", this.person);
+  }
 }
+
