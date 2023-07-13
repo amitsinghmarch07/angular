@@ -1,23 +1,26 @@
-import { Input, Component, EventEmitter } from '@angular/core';
+import { Input, Component, EventEmitter, ContentChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-child',
   template: `
     <p>
       child works!<br>
-      ParentId is {{parentId}}<br>
-      <button (click)="onSubmit()">ok</button>
-    </p>
-    <app-person-card></app-person-card>
+      <ng-content></ng-content>
+      <!-- <ng-content select="header"></ng-content>
+      <ng-content select="main"></ng-content>
+      <ng-content select="footer"></ng-content>
+      <ng-content select="div#c1"></ng-content> -->
+      <ng-content></ng-content>
   `,
   styles: [
     'p {border: 1px dotted red}'
   ]
 })
 export class ChildComponent {
-  @Input() parentId!: number;
+  @Input() id!: number;
   @Input() valueChanged = new EventEmitter();
 
+  @ContentChild('footer') content?: ElementRef<HTMLElement>;
   public onSubmit() {
 
     this.valueChanged.emit(100)
